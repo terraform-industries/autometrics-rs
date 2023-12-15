@@ -20,15 +20,15 @@ pub use self::prometheus::PrometheusTracker;
 #[cfg(prometheus_client)]
 pub use self::prometheus_client::PrometheusClientTracker;
 
-#[cfg(all(
-    not(doc),
-    any(
-        all(metrics, any(opentelemetry, prometheus, prometheus_client)),
-        all(opentelemetry, any(prometheus, prometheus_client)),
-        all(prometheus, prometheus_client)
-    )
-))]
-compile_error!("Only one of the metrics, opentelemetry, prometheus, or prometheus-client features can be enabled at a time");
+// #[cfg(all(
+//     not(doc),
+//     any(
+//         all(metrics, any(opentelemetry, prometheus, prometheus_client)),
+//         all(opentelemetry, any(prometheus, prometheus_client)),
+//         all(prometheus, prometheus_client)
+//     )
+// ))]
+// compile_error!("Only one of the metrics, opentelemetry, prometheus, or prometheus-client features can be enabled at a time");
 
 pub trait TrackMetrics {
     fn set_build_info(build_info_labels: &BuildInfoLabels);
